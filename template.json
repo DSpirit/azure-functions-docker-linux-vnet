@@ -35,6 +35,9 @@
         },
         "appInsightsInstrumentationKey":{
             "type": "string"
+        },
+        "subnetResourceId":{
+            "type": "string"
         }
     },
     "resources": [
@@ -140,7 +143,7 @@
             ],
             "apiVersion": "2018-02-01",
             "properties": {
-                "subnetResourceId": "/subscriptions/a5d101c8-7211-4151-9fb1-ab054271927b/resourceGroups/ZEISS.ESB.NETWORK/providers/Microsoft.Network/virtualNetworks/CZ-VN-NL-ESB-PREM-FUNC/subnets/CZ-SN-NL-ESB-Prem-Func-DEV"
+                "subnetResourceId": "[parameters('subnetResourceId')]"
             }
         }
     ]
