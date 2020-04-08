@@ -1,3 +1,7 @@
+ARG DOCKER_REGISTRY_SERVER_PASSWORD
+ARG DOCKER_REGISTRY_SERVER_URL
+ARG DOCKER_REGISTRY_SERVER_USERNAME
+
 FROM microsoft/dotnet:2.2-sdk AS installer-env
 
 COPY . /src/dotnet-function-app
@@ -9,8 +13,8 @@ FROM mcr.microsoft.com/azure-functions/dotnet:2.0-appservice
 
 ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
     AzureFunctionsJobHost__Logging__Console__IsEnabled=true \
-    DOCKER_REGISTRY_SERVER_USERNAME=XXXXXXXXXXX \
-    DOCKER_REGISTRY_SERVER_PASSWORD=XXXXXXXXXXXXXXXXXXXX \
-    DOCKER_REGISTRY_SERVER_URL=https://XXXXXXXXXXXX.azurecr.io
+    DOCKER_REGISTRY_SERVER_USERNAME=${DOCKER_REGISTRY_SERVER_USERNAME} \
+    DOCKER_REGISTRY_SERVER_PASSWORD=${DOCKER_REGISTRY_SERVER_PASSWORD} \
+    DOCKER_REGISTRY_SERVER_URL=${DOCKER_REGISTRY_SERVER_URL}
 
 COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
