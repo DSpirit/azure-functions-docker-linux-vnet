@@ -42,6 +42,16 @@
     },
     "resources": [
         {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "kind": "StorageV2",
+            "location": "[parameters('location')]",
+            "name": "[parameters('storageAccountName')]",
+            "sku": {
+                "name": "Standard_LRS"
+            }
+        },
+        {
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2018-02-01",
             "name": "[parameters('hostingPlanName')]",
@@ -71,7 +81,8 @@
             "name": "[parameters('name')]",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]"
+                "[resourceId('Microsoft.Web/serverfarms', parameters('hostingPlanName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
             ],
             "tags": {
 
