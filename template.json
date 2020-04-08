@@ -55,7 +55,7 @@
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2018-02-01",
             "name": "[parameters('hostingPlanName')]",
-            "location": "westeurope",
+            "location": "[parameters('location')]",
             "sku": {
                 "name": "EP2",
                 "tier": "ElasticPremium",
@@ -63,8 +63,8 @@
                 "family": "EP",
                 "capacity": 1
             },
-            "kind": "elastic",
-            "properties": {
+            "kind": "elastic",            
+            "properties": {                
                 "perSiteScaling": false,
                 "maximumElasticWorkerCount": 20,
                 "isSpot": false,
